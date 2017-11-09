@@ -2,7 +2,9 @@ class Desk {
 
   object State extends Enumeration {
     type State = Value
-    val Cross, Nought, None = Value
+    val Cross = Value("X")
+    val Nought = Value("O")
+    val None = Value(" ")
   }
 
   import State._
@@ -44,13 +46,7 @@ class Desk {
 
   override def toString: String = {
     def rowToString(row: Array[State]): String = {
-      row.foldLeft("|") { (accumulator, state) =>
-        state match {
-          case State.Cross => accumulator.concat(" X |")
-          case State.Nought => accumulator.concat(" O |")
-          case State.None => accumulator.concat("   |")
-        }
-      }
+      row.foldLeft("|") { (accumulator, state) => accumulator + state + "|" }
     }
 
     desk.foldLeft("") { (accumulator, row) => accumulator.concat(rowToString(row) + "\n")}
