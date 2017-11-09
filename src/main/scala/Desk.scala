@@ -42,5 +42,19 @@ class Desk {
     checkVertical(0, state) || checkHorizontal(0, state) || checkCross(state)
   }
 
+  override def toString: String = {
+    def rowToString(row: Array[State]): String = {
+      row.foldLeft("|") { (accumulator, state) =>
+        state match {
+          case State.Cross => accumulator.concat(" X |")
+          case State.Nought => accumulator.concat(" O |")
+          case State.None => accumulator.concat("   |")
+        }
+      }
+    }
+
+    desk.foldLeft("") { (accumulator, row) => accumulator.concat(rowToString(row) + "\n")}
+  }
+
 
 }
