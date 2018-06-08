@@ -4,3 +4,6 @@
 build.sbt
 target/
 project/
+*.iml
+.DS_Store
+src/.DS_Store
